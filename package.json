@@ -1,0 +1,16 @@
+{
+  "name": "github-hook",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "githubHook.js",
+  "scripts": {
+    "deploy": "gcloud beta functions deploy githubHook --runtime nodejs8 --trigger-http --project updateyapp",
+    "test": "mocha"
+  },
+  "author": "Justin Beckwith <justin.beckwith@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
