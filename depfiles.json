@@ -1,0 +1,18 @@
+[
+  {
+    "file": "package.json",
+    "language": "JavaScript"
+  },
+  {
+    "file": "Gemfile",
+    "language": "Ruby"
+  },
+  {
+    "file": "requirements.txt",
+    "language": "Python"
+  },
+  {
+    "file": "composer.json",
+    "language": "PHP"
+  }
+]

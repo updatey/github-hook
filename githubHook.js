@@ -1,21 +1,4 @@
-const depFiles = [
-  {
-    file: 'package.json',
-    language: 'JavaScript'
-  },
-  {
-    file: 'Gemfile',
-    language: 'Ruby'
-  },
-  {
-    file: 'requirements.txt',
-    language: 'Python'
-   },
-   {
-    file: 'composer.json',
-    language: 'PHP'
-   }
-];
+const depFiles = require('./depfiles.json');
 
 /**
  * Trigger from the GitHub event API for new commits and PullRequests
@@ -61,7 +44,6 @@ function getPackageChanges(data) {
       for (const change of changes) {
         for (const depFile of depFiles) {
           if (change === depFile.file) {
-            console.log(`DEPFILE DETECTED!!!!1`);
             packageChanges.push({ change, type: depFile.language });
           }
         }
@@ -70,6 +52,7 @@ function getPackageChanges(data) {
   }
   return packageChanges;
 }
+
 
 function getFile(path) {
   console.log(`Process ${path}...`)
