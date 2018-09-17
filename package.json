@@ -12,5 +12,10 @@
   "license": "MIT",
   "devDependencies": {
     "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "@google-cloud/logging-bunyan": "^0.9.1",
+    "bunyan": "^1.8.12",
+    "semver": "^5.5.1"
   }
 }

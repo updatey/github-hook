@@ -1,4 +1,15 @@
 
+const bunyan = require('bunyan');
+const {LoggingBunyan} = require('@google-cloud/logging-bunyan');
+const loggingBunyan = new LoggingBunyan();
+
+const logger = bunyan.createLogger({
+  name: 'github-logger',
+  streams: [
+    {stream: process.stdout, level: 'info'},
+    loggingBunyan.stream('info'),
+  ],
+});
 
 const depFiles = [
   {
@@ -26,8 +37,9 @@ const depFiles = [
  */
 exports.githubHook = (req, res) => {
   const data = req.body;
+  logger.info(JSON.stringify(data));
   if (!data || !data.ref || !data.commits || data.commits.length === 0) {
-    console.log('No data, ref, or commits.  Skipping.');
+    console.log('No data, ref, or commits. Skipping.');
     res.end();
     return;
   }
@@ -58,10 +70,11 @@ function getPackageChanges(data) {
   const packageChanges = [];
   console.log(`COMMITS: ${data.commits.length}`);
   for (const commit in data.commits) {
-    console.log(`COMMIT: ${commit.id}`);
+    console.log(`COMMIT: ${commit}`);
     for (const key in commitChangeKeys)
       console.log(`KEY: ${key}`);{
       const changes = commit[key];
+      console.log(`CHANGES: ${changes}`);
       for (const change in changes) {
         console.log(`CHANGE: ${change}`);
         for (const depFile in depFiles) {
