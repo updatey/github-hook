@@ -1,66 +1,66 @@
 {
-  "ref": "refs/heads/master",
-  "before": "19fa78a56ddb777b1d855b6df7b4bc4f4cc75c93",
-  "after": "9786a7e0029cd5e641d285addc73c68e5b0b001f",
+  "ref": "refs/heads/renovate/configure",
+  "before": "8b9637ed92dd519cde3617f85b97f6c2b2257d7e",
+  "after": "e1a40eaad69904b7be1d25825adeea82d52b7f3c",
   "created": false,
   "deleted": false,
-  "forced": false,
+  "forced": true,
   "base_ref": null,
-  "compare": "https://github.com/JustinBeckwith/cloudcats/compare/19fa78a56ddb...9786a7e0029c",
+  "compare": "https://github.com/JustinBeckwith/cloudcats/compare/8b9637ed92dd...e1a40eaad699",
   "commits": [
     {
-      "id": "9786a7e0029cd5e641d285addc73c68e5b0b001f",
-      "tree_id": "ee58c4fe6fb8e0976de61e8059aade6d3519db70",
+      "id": "e1a40eaad69904b7be1d25825adeea82d52b7f3c",
+      "tree_id": "41629387bb900d201d24cb377202c17e34147559",
       "distinct": true,
-      "message": "Change a dependency",
-      "timestamp": "2018-09-16T19:07:49-07:00",
-      "url": "https://github.com/JustinBeckwith/cloudcats/commit/9786a7e0029cd5e641d285addc73c68e5b0b001f",
+      "message": "Add renovate.json",
+      "timestamp": "2018-09-17T02:07:59Z",
+      "url": "https://github.com/JustinBeckwith/cloudcats/commit/e1a40eaad69904b7be1d25825adeea82d52b7f3c",
       "author": {
-        "name": "Justin Beckwith",
-        "email": "beckwith@google.com",
-        "username": "JustinBeckwith"
+        "name": "Renovate Bot",
+        "email": "bot@renovateapp.com",
+        "username": "renovate-bot"
       },
       "committer": {
-        "name": "Justin Beckwith",
-        "email": "beckwith@google.com",
-        "username": "JustinBeckwith"
+        "name": "Renovate Bot",
+        "email": "bot@renovateapp.com",
+        "username": "renovate-bot"
       },
       "added": [
-
+        "renovate.json"
       ],
       "removed": [
 
       ],
       "modified": [
-        "package.json"
+
       ]
     }
   ],
   "head_commit": {
-    "id": "9786a7e0029cd5e641d285addc73c68e5b0b001f",
-    "tree_id": "ee58c4fe6fb8e0976de61e8059aade6d3519db70",
+    "id": "e1a40eaad69904b7be1d25825adeea82d52b7f3c",
+    "tree_id": "41629387bb900d201d24cb377202c17e34147559",
     "distinct": true,
-    "message": "Change a dependency",
-    "timestamp": "2018-09-16T19:07:49-07:00",
-    "url": "https://github.com/JustinBeckwith/cloudcats/commit/9786a7e0029cd5e641d285addc73c68e5b0b001f",
+    "message": "Add renovate.json",
+    "timestamp": "2018-09-17T02:07:59Z",
+    "url": "https://github.com/JustinBeckwith/cloudcats/commit/e1a40eaad69904b7be1d25825adeea82d52b7f3c",
     "author": {
-      "name": "Justin Beckwith",
-      "email": "beckwith@google.com",
-      "username": "JustinBeckwith"
+      "name": "Renovate Bot",
+      "email": "bot@renovateapp.com",
+      "username": "renovate-bot"
     },
     "committer": {
-      "name": "Justin Beckwith",
-      "email": "beckwith@google.com",
-      "username": "JustinBeckwith"
+      "name": "Renovate Bot",
+      "email": "bot@renovateapp.com",
+      "username": "renovate-bot"
     },
     "added": [
-
+      "renovate.json"
     ],
     "removed": [
 
     ],
     "modified": [
-      "package.json"
+
     ]
   },
   "repository": {
@@ -132,8 +132,8 @@
     "releases_url": "https://api.github.com/repos/JustinBeckwith/cloudcats/releases{/id}",
     "deployments_url": "https://api.github.com/repos/JustinBeckwith/cloudcats/deployments",
     "created_at": 1457634462,
-    "updated_at": "2018-09-17T01:54:15Z",
-    "pushed_at": 1537150075,
+    "updated_at": "2018-09-17T02:07:57Z",
+    "pushed_at": 1537150081,
     "git_url": "git://github.com/JustinBeckwith/cloudcats.git",
     "ssh_url": "git@github.com:JustinBeckwith/cloudcats.git",
     "clone_url": "https://github.com/JustinBeckwith/cloudcats.git",
@@ -167,27 +167,27 @@
     "master_branch": "master"
   },
   "pusher": {
-    "name": "JustinBeckwith",
-    "email": "justin.beckwith@gmail.com"
+    "name": "renovate[bot]",
+    "email": null
   },
   "sender": {
-    "login": "JustinBeckwith",
-    "id": 534619,
-    "node_id": "MDQ6VXNlcjUzNDYxOQ==",
-    "avatar_url": "https://avatars2.githubusercontent.com/u/534619?v=4",
+    "login": "renovate[bot]",
+    "id": 29139614,
+    "node_id": "MDM6Qm90MjkxMzk2MTQ=",
+    "avatar_url": "https://avatars1.githubusercontent.com/in/2740?v=4",
     "gravatar_id": "",
-    "url": "https://api.github.com/users/JustinBeckwith",
-    "html_url": "https://github.com/JustinBeckwith",
-    "followers_url": "https://api.github.com/users/JustinBeckwith/followers",
-    "following_url": "https://api.github.com/users/JustinBeckwith/following{/other_user}",
-    "gists_url": "https://api.github.com/users/JustinBeckwith/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/JustinBeckwith/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/JustinBeckwith/subscriptions",
-    "organizations_url": "https://api.github.com/users/JustinBeckwith/orgs",
-    "repos_url": "https://api.github.com/users/JustinBeckwith/repos",
-    "events_url": "https://api.github.com/users/JustinBeckwith/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/JustinBeckwith/received_events",
-    "type": "User",
+    "url": "https://api.github.com/users/renovate%5Bbot%5D",
+    "html_url": "https://github.com/apps/renovate",
+    "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
+    "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
+    "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
+    "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
+    "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
+    "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
+    "type": "Bot",
     "site_admin": false
   },
   "installation": {

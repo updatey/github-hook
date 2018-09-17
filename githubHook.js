@@ -1,16 +1,3 @@
-
-const bunyan = require('bunyan');
-const {LoggingBunyan} = require('@google-cloud/logging-bunyan');
-const loggingBunyan = new LoggingBunyan();
-
-const logger = bunyan.createLogger({
-  name: 'github-logger',
-  streams: [
-    {stream: process.stdout, level: 'info'},
-    loggingBunyan.stream('info'),
-  ],
-});
-
 const depFiles = [
   {
     file: 'package.json',
@@ -36,8 +23,8 @@ const depFiles = [
  * @param {HttpResponse} res
  */
 exports.githubHook = (req, res) => {
+  const eventType = req.headers['X-GitHub-Event'];
   const data = req.body;
-  logger.info(JSON.stringify(data));
   if (!data || !data.ref || !data.commits || data.commits.length === 0) {
     console.log('No data, ref, or commits. Skipping.');
     res.end();
@@ -68,20 +55,14 @@ exports.githubHook = (req, res) => {
 function getPackageChanges(data) {
   const commitChangeKeys = ['added', 'modified', 'removed'];
   const packageChanges = [];
-  console.log(`COMMITS: ${data.commits.length}`);
-  for (const commit in data.commits) {
-    console.log(`COMMIT: ${commit}`);
-    for (const key in commitChangeKeys)
-      console.log(`KEY: ${key}`);{
+  for (const commit of data.commits) {
+    for (const key of commitChangeKeys) {
       const changes = commit[key];
-      console.log(`CHANGES: ${changes}`);
-      for (const change in changes) {
-        console.log(`CHANGE: ${change}`);
-        for (const depFile in depFiles) {
-          console.log(`DEPFILE: ${depFile.file}`);
+      for (const change of changes) {
+        for (const depFile of depFiles) {
           if (change === depFile.file) {
             console.log(`DEPFILE DETECTED!!!!1`);
-            packageChanges.push({ change, type });
+            packageChanges.push({ change, type: depFile.language });
           }
         }
       }
