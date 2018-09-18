@@ -1,4 +1,7 @@
+const PubSub = require('@google-cloud/pubsub');
 const depFiles = require('./depfiles.json');
+
+const pubsub = new PubSub();
 
 /**
  * Trigger from the GitHub event API for new commits and PullRequests
@@ -26,8 +29,7 @@ exports.githubHook = (req, res) => {
     res.end();
     return;
   }
-  console.log(packageChanges);
-  //const file = getFile()
+  processChanges(packageChanges);
   res.end();
 }
 
@@ -44,7 +46,12 @@ function getPackageChanges(data) {
       for (const change of changes) {
         for (const depFile of depFiles) {
           if (change === depFile.file) {
-            packageChanges.push({ change, type: depFile.language });
+            packageChanges.push({
+              repo: data.repository.full_name,
+              file: change,
+              language: depFile.language,
+              event: key
+            });
           }
         }
       }
@@ -53,8 +60,14 @@ function getPackageChanges(data) {
   return packageChanges;
 }
 
-
-function getFile(path) {
-  console.log(`Process ${path}...`)
-  //GET /repos/:owner/:repo/contents/:path
+/**
+ * Given a list of changes, queue events
+ * @param changes
+ */
+function processChanges(changes) {
+  changes.forEach(x => {
+    const topic = pubsub.topic(x.language);
+    topic.publisher().publish(Buffer.from(JSON.stringify(x)));
+  });
+  console.log(changes);
 }

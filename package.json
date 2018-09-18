@@ -6,13 +6,15 @@
   "main": "githubHook.js",
   "scripts": {
     "deploy": "gcloud beta functions deploy githubHook --runtime nodejs8 --trigger-http --project updateyapp",
-    "test": "mocha"
+    "test": "GOOGLE_APPLICATION_CREDENTIALS=./keyfile.json mocha"
   },
   "author": "Justin Beckwith <justin.beckwith@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "proxyquire": "^2.1.0"
   },
   "dependencies": {
+    "@google-cloud/pubsub": "^0.20.0"
   }
 }
