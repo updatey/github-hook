@@ -11,7 +11,7 @@ exports.pubsub = pubsub;
  * @param {HttpResponse} res
  */
 exports.githubHook = (req, res) => {
-  const eventType = req.headers['X-GitHub-Event'];
+  // const eventType = req.headers['X-GitHub-Event'];
   const data = req.body;
   if (!data || !data.ref || !data.commits || data.commits.length === 0) {
     console.log('No data, ref, or commits. Skipping.');
@@ -19,7 +19,7 @@ exports.githubHook = (req, res) => {
     return;
   }
   const branchParts = data.ref.split('/');
-  const branch = branchParts[branchParts.length-1];
+  const branch = branchParts[branchParts.length - 1];
   if (branch !== 'master') {
     console.log('No changes to the master branch. Skipping.');
     res.end();
@@ -33,13 +33,13 @@ exports.githubHook = (req, res) => {
   }
   processChanges(packageChanges);
   res.end();
-}
+};
 
 /**
  * Determine if the GitHub commit contains a change to package metadata.
  * @param {GitHubEvent} data
  */
-function getPackageChanges(data) {
+function getPackageChanges (data) {
   const commitChangeKeys = ['added', 'modified', 'removed'];
   const packageChanges = [];
   for (const commit of data.commits) {
@@ -66,7 +66,7 @@ function getPackageChanges(data) {
  * Given a list of changes, queue events
  * @param changes
  */
-function processChanges(changes) {
+function processChanges (changes) {
   changes.forEach(x => {
     const topic = pubsub.topic(x.language);
     topic.publisher().publish(Buffer.from(JSON.stringify(x)));

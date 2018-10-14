@@ -1,4 +1,3 @@
-const mocha = require('mocha');
 const assert = require('assert');
 const path = require('path');
 const hook = require('../src/githubHook.js');
@@ -9,7 +8,7 @@ const {EventEmitter} = require('events');
  * @param {*} event
  * @param {*} body
  */
-function getMock(event, body) {
+function getMock (event, body) {
   return {
     body,
     headers: {
@@ -18,23 +17,25 @@ function getMock(event, body) {
   };
 }
 
-
 /**
  * Create a pubsub mock endpoint
  */
 
 class PubSubMock extends EventEmitter {
-  topic(name) {
+  topic (name) {
+    const self = this;
     return {
       publisher: () => {
-        publish: buffer => {
-          this.emit('publish', {
-            name,
-            buffer
-          });
-        }
+        return {
+          publish: buffer => {
+            self.emit('publish', {
+              name,
+              buffer
+            });
+          }
+        };
       }
-    }
+    };
   }
 }
 
@@ -47,10 +48,10 @@ it('should reject changes against non-master branches', done => {
     end: () => {
       done();
     }
-  }
+  };
   hook.pubsub.on('publish', res => {
     assert.fail('publish should not happen here');
-  })
+  });
   hook.githubHook(req, res);
 });
 
@@ -61,11 +62,10 @@ it('should detect changes to package.json', done => {
     end: () => {
       done();
     }
-  }
+  };
   hook.pubsub.on('publish', res => {
     assert(res);
     assert(res.language, 'JavaScript');
-  })
+  });
   hook.githubHook(req, res);
 });
-
