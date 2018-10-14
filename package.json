@@ -1,9 +1,7 @@
 {
   "name": "github-hook",
-  "version": "1.0.0",
-  "description": "",
   "private": true,
-  "main": "githubHook.js",
+  "main": "./src/githubHook.js",
   "scripts": {
     "deploy": "gcloud beta functions deploy githubHook --runtime nodejs8 --trigger-http --project updateyapp",
     "test": "nyc mocha --exit",

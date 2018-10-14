@@ -1,7 +1,7 @@
 const mocha = require('mocha');
 const assert = require('assert');
 const path = require('path');
-const hook = require('../githubHook.js');
+const hook = require('../src/githubHook.js');
 const {EventEmitter} = require('events');
 
 /**
