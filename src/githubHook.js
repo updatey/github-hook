@@ -1,5 +1,5 @@
 const PubSub = require('@google-cloud/pubsub');
-const depFiles = require('./depfiles.json');
+const depFiles = require('../depfiles.json');
 
 // export pubsub for testing
 const pubsub = new PubSub();
