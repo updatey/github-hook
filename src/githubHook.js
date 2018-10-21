@@ -40,6 +40,7 @@ exports.githubHook = (req, res) => {
  * @param {GitHubEvent} data
  */
 function getPackageChanges (data) {
+  console.log(data);
   const commitChangeKeys = ['added', 'modified', 'removed'];
   const packageChanges = [];
   for (const commit of data.commits) {
