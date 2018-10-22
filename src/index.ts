@@ -1,18 +1,28 @@
-const PubSub = require('@google-cloud/pubsub');
-const depFiles = require('../depfiles.json');
+import {Request, Response} from 'express';
+import {GitHubChange} from './types';
 
-// export pubsub for testing
+// tslint:disable-next-line variable-name
+const PubSub = require('@google-cloud/pubsub');
+const depFiles = require('../../depfiles.json');
+
 const pubsub = new PubSub();
-exports.pubsub = pubsub;
+export {pubsub};
+
+export interface PackageChange {
+  language: string;
+  repo: string;
+  file: string;
+  event: string;
+}
 
 /**
  * Trigger from the GitHub event API for new commits and PullRequests
  * @param {HttpRequest} req
  * @param {HttpResponse} res
  */
-exports.githubHook = (req, res) => {
+export async function githubHook(req: Request, res: Response) {
   // const eventType = req.headers['X-GitHub-Event'];
-  const data = req.body;
+  const data: GitHubChange = req.body;
   if (!data || !data.ref || !data.commits || data.commits.length === 0) {
     console.log('No data, ref, or commits. Skipping.');
     res.end();
@@ -31,21 +41,20 @@ exports.githubHook = (req, res) => {
     res.end();
     return;
   }
-  processChanges(packageChanges);
+  await processChanges(packageChanges);
   res.end();
-};
+}
 
 /**
  * Determine if the GitHub commit contains a change to package metadata.
  * @param {GitHubEvent} data
  */
-function getPackageChanges (data) {
-  console.log(data);
+function getPackageChanges(data: GitHubChange): PackageChange[] {
   const commitChangeKeys = ['added', 'modified', 'removed'];
   const packageChanges = [];
   for (const commit of data.commits) {
     for (const key of commitChangeKeys) {
-      const changes = commit[key];
+      const changes = (commit as {} as {[index: string]: string[]})[key];
       for (const change of changes) {
         for (const depFile of depFiles) {
           if (change === depFile.file) {
@@ -67,10 +76,9 @@ function getPackageChanges (data) {
  * Given a list of changes, queue events
  * @param changes
  */
-function processChanges (changes) {
-  changes.forEach(x => {
+async function processChanges(changes: PackageChange[]): Promise<void> {
+  await Promise.all(changes.map(x => {
     const topic = pubsub.topic(x.language);
-    topic.publisher().publish(Buffer.from(JSON.stringify(x)));
-  });
-  console.log(changes);
+    return topic.publisher().publish(Buffer.from(JSON.stringify(x)));
+  }));
 }

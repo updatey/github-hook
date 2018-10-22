@@ -1,3 +1,5 @@
 node_modules
 keyfile.json
 .nyc_output
+build/
+coverage
